@@ -1,11 +1,23 @@
-<h1>Home</h1>
-<h1>Todos</h1>
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+</head>
+<header>
+<h1>My Todo List</h1>
+</header>
 <section>
+
+    <div  class="tableheaderbox">
+        <div class="tableheader">TASK</div>
+        <div class="tableheader">STATUS</div>
+        <div class="tableheader"></div>
+    </div>
+
     <%@todos.each do |todo|%>
         <div class="item">
             <div class="iteminfo"  style="text-decoration:<%=todo.status == 2 ? "line-through" : "none"%>;"><%=todo.task%></div>
 
-            <div class="iteminfo"><%=["todo", "doing", "done"][todo.status]%></div>
+            <div class="iteminfo"  style="color:<%=todo.status == 2 ? "green" : "red"%>;"><%=["todo", "doing", "done"][todo.status]%></div>
             <div class="iteminfo">
                 <%if todo.status == 0%>
                     <%=form_with model: todo, url: todo_url(todo), method: :patch, local: true do |f|%>
@@ -14,7 +26,8 @@
                     <%end%>
                 
                 <%else%>
-                    <%=link_to 'delete', todo_url(todo), method: :delete%>
+                    
+                    <a rel="nofollow" href="<%=todo_url(todo)%>" data-method="delete"><i class="fas fa-trash-alt"></i></a>
                 <%end%>
             </div>
         

@@ -2,13 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+header{
+    display:flex;
+    justify-content: center;
+}
+
+header h1{
+    font-family: 'Verdana';
+}
+
+
 .item{
     display:flex;
-    border-bottom: 1px solid red;
+    border-bottom: 1px solid darkgreen;
     padding-bottom:5px;
     padding-top:5px;
 }
 
 .iteminfo{
     flex: 33.333%;
+    padding-left:10px;
+}
+
+.iteminfo:first-child, .iteminfo:nth-child(2){
+    border-right: 1px solid darkgreen;
+}
+
+.tableheader{
+    flex: 33.333%;
+    padding-left:10px;
+    border-bottom: 3px solid darkgreen;
+    font-weight:bold;
+
+}
+
+.tableheader:first-child, .tableheader:nth-child(2){
+    border-right: 3px solid darkgreen;
+    border-bottom: 3px solid darkgreen;
+    flex:33.333%;
+    padding-left:10px;
+}
+.tableheaderbox{
+    display:flex;
 }
