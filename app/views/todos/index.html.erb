@@ -1,0 +1,29 @@
+<h1>Home</h1>
+<h1>Todos</h1>
+<section>
+    <%@todos.each do |todo|%>
+        <div class="item">
+            <div class="iteminfo"  style="text-decoration:<%=todo.status == 2 ? "line-through" : "none"%>;"><%=todo.task%></div>
+
+            <div class="iteminfo"><%=["todo", "doing", "done"][todo.status]%></div>
+            <div class="iteminfo">
+                <%if todo.status == 0%>
+                    <%=form_with model: todo, url: todo_url(todo), method: :patch, local: true do |f|%>
+                    <%=f.number_field :status, value: 2, type: :hidden%>
+                    <%=f.submit value: "Mark done"%>
+                    <%end%>
+                
+                <%else%>
+                    <%=link_to 'delete', todo_url(todo), method: :delete%>
+                <%end%>
+            </div>
+        
+        </div>
+        
+    <%end%>
+</section>
+<%=form_with model: @todo, local: true do |f|%>
+    <%=f.text_field :task, required: true, placeholder: "Next task"%>
+    <%=f.number_field :status, type: "hidden", value: 0, min: 0, max: 2%>
+    <%=f.submit%>
+<%end%>
